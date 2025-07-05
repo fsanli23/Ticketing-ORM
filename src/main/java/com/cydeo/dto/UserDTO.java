@@ -1,25 +1,27 @@
 package com.cydeo.dto;
 
 import com.cydeo.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.*;
 
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class UserDTO {
 
+    @Setter
     @NotBlank
     @Size(max = 15, min = 2)
     private String firstName;
 
+    @Setter
     @NotBlank
     @Size(max = 15, min = 2)
     private String lastName;
 
+    @Setter
     @NotBlank
     @Email
     private String userName;
@@ -31,29 +33,25 @@ public class UserDTO {
     @NotNull
     private String confirmPassWord;
 
+    @Setter
     private boolean enabled;
 
+    @Setter
     @NotBlank
     @Pattern(regexp = "^\\d{10}$")
     private String phone;
 
+    @Setter
     @NotNull
     private RoleDTO role;
 
+    @Setter
     @NotNull
     private Gender gender;
-
-    public String getPassWord() {
-        return passWord;
-    }
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
         checkConfirmPassWord();
-    }
-
-    public String getConfirmPassWord() {
-        return confirmPassWord;
     }
 
     public void setConfirmPassWord(String confirmPassWord) {
@@ -67,62 +65,6 @@ public class UserDTO {
         }else if(!this.passWord.equals(confirmPassWord)){
             this.confirmPassWord = null;
         }
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public RoleDTO getRole() {
-        return role;
-    }
-
-    public void setRole(RoleDTO role) {
-        this.role = role;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
 }
