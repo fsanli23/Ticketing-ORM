@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationPropertiesBinding
 public class RoleDtoConverter implements Converter<String, RoleDTO> {
 
-    RoleService roleService;
+    private final @Lazy RoleService roleService;
 
     //injection
-    public RoleDtoConverter( @Lazy RoleService roleService) {
+    public RoleDtoConverter(@Lazy RoleService roleService) {
         this.roleService = roleService;
     }
 
@@ -25,7 +25,6 @@ public class RoleDtoConverter implements Converter<String, RoleDTO> {
         if (source.isEmpty()) {
             return null;
         }
-
         return roleService.findById(Long.parseLong(source));
 
     }

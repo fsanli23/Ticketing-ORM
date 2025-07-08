@@ -5,6 +5,8 @@ import com.cydeo.entity.Role;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class RoleMapper {
 
@@ -19,10 +21,8 @@ public class RoleMapper {
     public Role convertToEntity(RoleDTO roleDTO) {
         return modelMapper.map(roleDTO, Role.class);
     }
-
     public RoleDTO convertToDTO(Role role) {
         return modelMapper.map(role, RoleDTO.class);
     }
-
 
 }

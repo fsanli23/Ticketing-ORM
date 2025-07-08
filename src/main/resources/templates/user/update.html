@@ -71,7 +71,7 @@
                                                     <label for="emailaddress" class="col-form-label">Email
                                                         Address</label>
                                                     <input id="emailaddress" type="text" placeholder="email address"
-                                                           th:field="*{userName}" class="form-control">
+                                                           th:field="*{userName}" class="form-control" readonly>
                                                     <div class="invalid-feedback"
                                                          th:if="${#fields.hasErrors('userName')}">
                                                         <ul>
