@@ -17,6 +17,7 @@ public class UserServiceImp implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+
     public UserServiceImp(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
@@ -62,5 +63,10 @@ public class UserServiceImp implements UserService {
         User user = userRepository.findByUserName(username);
         user.setIsDelete(Boolean.TRUE);
         userRepository.save(user);
+    }
+
+    @Override
+    public List<UserDTO> listAllByRole(String role) {
+     return userRepository.findAllByRoleDescriptionIgnoreCase(role).stream().map(userMapper::convertToDto).collect(Collectors.toList());
     }
 }

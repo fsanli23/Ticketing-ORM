@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -15,6 +16,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Transactional
     void deleteByUserName(String username);
+
+    List<User> findAllByRoleDescriptionIgnoreCase(String description);
+
+
+
+
+
 
 
 }
