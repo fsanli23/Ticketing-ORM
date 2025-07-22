@@ -2,11 +2,13 @@ package com.cydeo.entity;
 
 import com.cydeo.enums.Gender;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Data
 @Entity
@@ -16,6 +18,7 @@ public class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
+    @Column(unique = true, nullable = false)
     private String userName;
     private String passWord;
     private boolean enabled;
