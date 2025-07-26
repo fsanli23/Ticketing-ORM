@@ -1,7 +1,6 @@
 package com.cydeo.mapper;
 
 
-import com.cydeo.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

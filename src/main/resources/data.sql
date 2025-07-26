@@ -10,7 +10,7 @@ values (now(), 1, false, now(), 1, 'Admin'),
 
 insert into users(insert_date_time, insert_user_id, is_delete, last_update_date_time, last_update_user_id, enabled,
                   first_name, last_name, user_name, role_id,gender)
-values (now(), 1, false, now(), 1, true, 'admin' , 'admin', 'admin@gmail.com', 1,'MALE');
+values (now(), 1, false, now(), 1, true, 'admin1' , 'admin', 'admin5@gmail.com', 1,'MALE');
 
 
 
