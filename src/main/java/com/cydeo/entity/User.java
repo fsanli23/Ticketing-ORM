@@ -4,6 +4,7 @@ import com.cydeo.enums.Gender;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Where(clause = "is_delete=false")
+@ToString
 public class User extends BaseEntity {
 
     private String firstName;
@@ -23,7 +25,7 @@ public class User extends BaseEntity {
     private String passWord;
     private boolean enabled;
     private String phone;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
     @Enumerated(EnumType.STRING)

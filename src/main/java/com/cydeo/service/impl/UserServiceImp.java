@@ -11,6 +11,7 @@ import com.cydeo.service.TaskService;
 import com.cydeo.service.UserService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParsePosition;
@@ -100,6 +101,12 @@ public class UserServiceImp implements UserService {
             default:
                 return true;
         }
+    }
+    public static void main(String[] args) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String rawPassword = "Abc123"; // The password you want to hash
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        System.out.println("Encoded password for 'Abc123': " + encodedPassword);
     }
 
 }

@@ -4,22 +4,13 @@ package com.cydeo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
 
 
-    @Bean
+/*    @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
 
         List<UserDetails> userList = new ArrayList<>();
@@ -27,20 +18,19 @@ public class SecurityConfig {
         userList.add(new User("fatih", encoder.encode("password"), List.of(new SimpleGrantedAuthority("ROLE_MANAGER"))));
         return new InMemoryUserDetailsManager(userList);
 
-    }
+    }*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests()// to authorize any action
-                .antMatchers("/user/**").hasRole("ADMIN")
-                .antMatchers("/project/**/**").hasRole("MANAGER")
-                .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
-                .antMatchers("/task/**").hasRole("MANAGER")
+                .authorizeRequests()// to authorize any action  // use hasAuthority because hasrole has prefix ROLE . simply use has authority
+                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/project/**/**").hasAuthority("Manager")
+                .antMatchers("/task/employee/**").hasAuthority("Employee")
+                .antMatchers("/task/**").hasRole("Manager")
                // .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
                // .antMatchers("/task/**").hasAnyRole("EMPLOYEE","ADMIN")
-                .antMatchers("/", "/login", "/fragments/**", "/images/**", "/assets/**")
-                .permitAll()
+                .antMatchers("/", "/login", "/fragments/**", "/images/**", "/assets/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
